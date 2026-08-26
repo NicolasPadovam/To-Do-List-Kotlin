@@ -4,44 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import nicolas.com.github.to_do_list.ui.theme.ToDoListTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import nicolas.com.github.to_do_list.navigation.AppNavigation
+import nicolas.com.github.to_do_list.ui.theme.FiaptodolistTheme
+import nicolas.com.github.to_do_list.viewmodel.TarefaViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ToDoListTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            FiaptodolistTheme {
+                val viewModel: TarefaViewModel = viewModel(
+                    factory = TarefaViewModel.factory(applicationContext)
+                )
+                AppNavigation(viewModel = viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ToDoListTheme {
-        Greeting("Android")
     }
 }
