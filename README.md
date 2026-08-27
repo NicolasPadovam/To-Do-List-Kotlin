@@ -149,6 +149,7 @@ To-Do-List-Kotlin/
 │       └── MainActivity.kt               # Ponto de entrada
 ├── docs/
 │   └── evidencias/                       # Prints da aplicação em execução
+│    └── superpowers/                       # Specs
 ├── gradle/
 ├── build.gradle.kts
 ├── settings.gradle.kts
