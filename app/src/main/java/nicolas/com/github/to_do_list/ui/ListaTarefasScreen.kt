@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -35,6 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import carreiras.com.github.todolist.util.formatarDataHora
 import nicolas.com.github.to_do_list.data.Tarefa
 import nicolas.com.github.to_do_list.viewmodel.TarefaViewModel
 
@@ -141,6 +144,15 @@ private fun TarefaItem(
                         overflow = TextOverflow.Ellipsis
                     )
                 }
+                if (tarefa.dataHora != null) {
+                    val atrasada = tarefa.dataHora < System.currentTimeMillis() && !tarefa.concluida
+                    Text(
+                        text = formatarDataHora(tarefa.dataHora),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = if (atrasada) MaterialTheme.colorScheme.error else Color.Unspecified,
+                        fontWeight = if (atrasada) FontWeight.Bold else FontWeight.Normal
+                    )
+                }
             }
             IconButton(onClick = onDeletar) {
                 Icon(Icons.Default.Delete, contentDescription = "Deletar tarefa")
@@ -192,6 +204,30 @@ private fun TarefaItemPreview() {
 private fun TarefaItemConcluidaPreview() {
     TarefaItem(
         tarefa = Tarefa(id = 2, titulo = "Enviar atividade", descricao = "Upload no portal da FIAP", concluida = true),
+        onCheckedChange = {},
+        onEditar = {},
+        onDeletar = {}
+    )
+}
+
+@Preview(showBackground = true, name = "Item com prazo futuro")
+@Composable
+private fun TarefaItemComPrazoPreview() {
+    val prazo = System.currentTimeMillis() + 86_400_000L
+    TarefaItem(
+        tarefa = Tarefa(id = 3, titulo = "Entregar atividade", descricao = "Upload no portal da FIAP", concluida = false, dataHora = prazo),
+        onCheckedChange = {},
+        onEditar = {},
+        onDeletar = {}
+    )
+}
+
+@Preview(showBackground = true, name = "Item atrasado")
+@Composable
+private fun TarefaItemAtrasadaPreview() {
+    val prazo = System.currentTimeMillis() - 86_400_000L
+    TarefaItem(
+        tarefa = Tarefa(id = 4, titulo = "Entregar atividade", descricao = "Upload no portal da FIAP", concluida = false, dataHora = prazo),
         onCheckedChange = {},
         onEditar = {},
         onDeletar = {}
