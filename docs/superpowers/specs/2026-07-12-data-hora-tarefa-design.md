@@ -62,11 +62,11 @@ var minuto by remember(dataHoraInicial) { mutableStateOf<Int?>(...) }
 UI:
 - `Switch` com label "Definir data e horário" controla `temDataHora`
 - Quando `temDataHora == true`, exibe dois campos clicáveis (ex: `OutlinedButton` ou `AssistChip`):
-  - "Data: 15/07/2026" (ou "Selecionar data" se ainda não escolhida) → abre `DatePickerDialog` do Material3, grava `selectedDateMillis`
-  - "Hora: 14:30" (ou "Selecionar hora") → abre um `Dialog` com `TimePicker` do Material3 (Material3 não tem `TimePickerDialog` pronto — é um `AlertDialog`/`Dialog` customizado envolvendo `TimePicker`), grava `hour`/`minute`
+    - "Data: 15/07/2026" (ou "Selecionar data" se ainda não escolhida) → abre `DatePickerDialog` do Material3, grava `selectedDateMillis`
+    - "Hora: 14:30" (ou "Selecionar hora") → abre um `Dialog` com `TimePicker` do Material3 (Material3 não tem `TimePickerDialog` pronto — é um `AlertDialog`/`Dialog` customizado envolvendo `TimePicker`), grava `hour`/`minute`
 - Botão "Salvar":
-  - Habilitado apenas se `titulo` não vazio **e** (`temDataHora == false` OU (`dataMillis != null` E `hora != null` E `minuto != null`))
-  - Ao salvar, combina `dataMillis + hora + minuto` num único `Long` via `java.util.Calendar` (compatível com `minSdk = 24`); se `temDataHora == false`, passa `null`
+    - Habilitado apenas se `titulo` não vazio **e** (`temDataHora == false` OU (`dataMillis != null` E `hora != null` E `minuto != null`))
+    - Ao salvar, combina `dataMillis + hora + minuto` num único `Long` via `java.util.Calendar` (compatível com `minSdk = 24`); se `temDataHora == false`, passa `null`
 - Assinatura de callback muda para: `onSalvar: (titulo: String, descricao: String, dataHora: Long?) -> Unit`
 
 ### FormularioTarefaScreen (stateful)
