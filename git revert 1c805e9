@@ -1,0 +1,13 @@
+[33m1c805e9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: adicionar utilitario de conversao de data/hora
+[33m3c264a8[m feat: adicionar utilitario de conversao de data/hora
+[33m9aa674c[m feat: adicionar campo dataHora e ordenar tarefas por prazo
+[33m4c0a26b[m  docs: adicionar plano de implementacao para data/horario nas tarefas  e design spec para data/horario nas tarefas
+[33m2fcc78b[m feat:add evidencia build
+[33m66b3506[m feat: atualizando o readme e a organização de pastas
+[33m3076c8c[m feat: adicionando README.md
+[33m76ac424[m feat: integrar AppNavigation e TarefaViewModel na MainActivity
+[33mda7c646[m feat: adicionar AppNavigation com rotas lista e formulario
+[33m2df8807[m feat: adicionar FormularioTarefaScreen para criar e editar tarefas, com previews
+[33m03e4557[m feat: adicionar ListaTarefasScreen com LazyColumn, acoes CRUD e previews
+[33m82472e0[m feat: adicionar TarefaRepository e TarefaViewModel
+[33mb7ba9aa[m first commit
